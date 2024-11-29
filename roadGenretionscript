@@ -1,0 +1,25 @@
+using JetBrains.Annotations;
+using UnityEngine;
+
+public class road_script : MonoBehaviour
+{
+    public Transform road_generator;
+    public GameObject road;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (transform.position.z < road_generator.transform.position.z)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 14f);
+            Instantiate(road, transform.position, Quaternion.identity);
+
+        }
+    }
+}

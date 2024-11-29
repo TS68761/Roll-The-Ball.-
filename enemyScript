@@ -1,0 +1,43 @@
+using UnityEngine;
+
+public class enemy_script : MonoBehaviour
+{
+
+    public GameObject enemy,coin;
+    public float random_left, random_right;
+    public Transform road_generator_point,coin_point;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+       coin.transform.Rotate(0f, 0f, 90f);
+    }
+
+    // Update is called once per frame
+    void Update()
+        
+    {
+        random_left = Random.Range(-4f, 4f);
+        random_right = Random.Range(-4f, -4f);
+        if (coin_point.transform.position.z < road_generator_point.transform.position.z)
+        {
+            coin_point.transform.position = new Vector3(coin_point.transform.position.x, coin_point.transform.position.y, coin_point.transform.position.z + 2f);
+            coin.transform.position = new Vector3(coin_point.transform.position.x - 1f, coin_point.transform.position.y + 0.9f, coin_point.transform.position.z);
+          
+            Instantiate(coin, coin.transform.position, Quaternion.identity);
+            coin.transform.position = new Vector3(coin_point.transform.position.x + 1f, coin_point.transform.position.y + 0.9f, coin_point.transform.position.z);
+            Instantiate(coin, coin.transform.position, Quaternion.identity);
+        }
+
+        
+        
+            if (transform.position.z < road_generator_point.transform.position.z)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 10f);
+                enemy.transform.position = new Vector3(transform.position.x - 1f, transform.position.y + 0.9f, transform.position.z + random_left);
+                Instantiate(enemy, enemy.transform.position, Quaternion.identity);
+                enemy.transform.position = new Vector3(transform.position.x + 1f, transform.position.y + 0.9f, transform.position.z + random_right);
+                Instantiate(enemy, enemy.transform.position, Quaternion.identity);
+            }
+        
+    }
+}
